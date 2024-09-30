@@ -1,0 +1,11 @@
+@import '@fontsource-variable/exo-2';
+
+@tailwind base;
+@layer base {
+	body {
+		background-color: #f9f9f9;
+		font-family: 'Exo 2 Variable', sans-serif;
+	}
+}
+@tailwind components;
+@tailwind utilities;
