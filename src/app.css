@@ -3,9 +3,42 @@
 @tailwind base;
 @layer base {
 	body {
-		background-color: #f9f9f9;
-		font-family: 'Exo 2 Variable', sans-serif;
+		background-color: #fff;
 	}
 }
 @tailwind components;
+@layer components {
+	.btn {
+		@apply bg-lime-500 hover:bg-lime-600 text-white font-bold px-6 py-2 rounded-full tracking-wide leading-none transition duration-300;
+	}
+	.btn.btn-outline {
+		@apply bg-transparent border border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-white;
+	}
+	.btn.link {
+		@apply bg-transparent border-2 border-transparent hover:border-lime-500;
+	}
+
+	label {
+		@apply text-[0.7rem] text-neutral-500 uppercase tracking-wide;
+	}
+	input[type='text'],
+	input[type='url'],
+	input[type='date'],
+	input[type='file'],
+	textarea {
+		@apply w-full px-3 py-2 border border-neutral-300 focus:outline-none focus:ring-1 focus:ring-lime-500 focus:border-lime-500 transition duration-200 ease-in-out;
+	}
+
+	input[type='checkbox'] {
+		@apply w-4 h-4 text-lime-500 border-neutral-300 focus:ring-lime-500;
+	}
+
+	select {
+		@apply w-full px-3 py-2 border border-neutral-300 focus:outline-none focus:ring-1 focus:ring-lime-500 focus:border-lime-500 transition duration-200 ease-in-out appearance-none bg-white;
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+		background-position: right 0.5rem center;
+		background-repeat: no-repeat;
+		background-size: 1.5em 1.5em;
+	}
+}
 @tailwind utilities;

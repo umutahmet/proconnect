@@ -14,7 +14,6 @@
 </script>
 
 <svelte:window bind:scrollY />
-
 <header
 	class="fixed inset-x-8 top-4 rounded-xl z-50 transition-all duration-300 ease-in-out"
 	class:header-shadow={!isAtTop}
@@ -24,7 +23,7 @@
 			<a href="/"> <span class="text-2xl font-bold text-white">ProConnect</span></a>
 		</div>
 
-		<nav class="hidden md:flex space-x-8">
+		<nav class="hidden lg:flex space-x-8">
 			{#each menuItems as item}
 				<a
 					href={item.href}
@@ -38,22 +37,14 @@
 			{/each}
 		</nav>
 
-		<div class="hidden md:flex space-x-4">
-			<a
-				href="/signin"
-				class=" text-neutral-200 font-bold px-8 py-3 rounded-xl tracking-wide transition duration-300"
-			>
-				Log in
-			</a>
-			<a
-				href="/signup"
-				class="bg-lime-500 hover:bg-lime-600 text-white font-bold px-8 py-3 rounded-xl tracking-wide transition duration-300"
-			>
-				Sign Up
-			</a>
+		<div class="hidden lg:flex space-x-4">
+			<div>
+				<a href="/signin" class="btn link"> Log in </a>
+				<a href="/signup" class="btn"> Sign Up </a>
+			</div>
 		</div>
 
-		<button class="md:hidden text-gray-600 hover:text-gray-600 focus:outline-none">
+		<button class="lg:hidden text-gray-600 hover:text-gray-600 focus:outline-none">
 			<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path
 					stroke-linecap="round"
