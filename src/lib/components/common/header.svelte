@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from 'svelte';
+
 	const menuItems = [
 		{ label: 'How it works', href: '/how-it-works' },
 		{ label: 'Benefits', href: '/benefits' },
@@ -9,8 +11,31 @@
 
 	let isAtTop = true;
 	let scrollY = 0;
+	let isMenuOpen = false;
 
 	$: isAtTop = scrollY === 0;
+
+	const toggleMenu = () => {
+		isMenuOpen = !isMenuOpen;
+	};
+
+	const closeMenu = () => {
+		isMenuOpen = false;
+	};
+
+	onMount(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 1024) {
+				closeMenu();
+			}
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	});
 </script>
 
 <svelte:window bind:scrollY />
@@ -44,21 +69,61 @@
 			</div>
 		</div>
 
-		<button class="lg:hidden text-gray-600 hover:text-gray-600 focus:outline-none">
+		<button
+			class="lg:hidden text-gray-600 hover:text-gray-600 focus:outline-none"
+			on:click={toggleMenu}
+			aria-label="Toggle menu"
+		>
 			<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					stroke-width="2"
-					d="M4 6h16M4 12h16M4 18h16"
+					d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
 				/>
 			</svg>
 		</button>
 	</div>
+
+	{#if isMenuOpen}
+		<div class="lg:hidden menu-shadow rounded-xl">
+			<nav class="px-4 pt-2 pb-4 space-y-2">
+				{#each menuItems as item}
+					<a
+						href={item.href}
+						class="block text-neutral-900 uppercase tracking-wide text-sm p-2 font-medium transition-colors duration-300 ease-in-out"
+						on:click={closeMenu}
+					>
+						{item.label}
+					</a>
+				{/each}
+			</nav>
+
+			<div class="px-4 pt-2 pb-4 space-y-2">
+				<a
+					href="/signin"
+					class="block text-neutral-900 uppercase tracking-wide text-sm p-2 font-medium transition-colors duration-300 ease-in-out"
+					on:click={closeMenu}
+				>
+					Log in
+				</a>
+				<a
+					href="/signup"
+					class="block text-neutral-900 uppercase tracking-wide text-sm p-2 font-medium transition-colors duration-300 ease-in-out"
+					on:click={closeMenu}
+				>
+					Sign Up
+				</a>
+			</div>
+		</div>
+	{/if}
 </header>
 
 <style lang="postcss">
 	.header-shadow {
 		@apply bg-white/5 backdrop-blur-sm shadow-lg;
+	}
+	.menu-shadow {
+		@apply bg-white/80 backdrop-blur-sm shadow-lg;
 	}
 </style>

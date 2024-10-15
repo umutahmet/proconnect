@@ -72,9 +72,9 @@
 	});
 </script>
 
-<div class="flex h-screen">
-	<div class="w-1/2 overflow-y-auto p-8">
-		<div class="flex flex-col justify-center items-center max-w-xl mx-auto w-full h-full">
+<div class="lg:flex h-screen">
+	<div class="lg:w-1/2 overflow-y-auto p-8">
+		<div class="flex flex-col justify-center items-center lg:max-w-xl lg:mx-auto w-full h-full">
 			<div class="w-full">
 				<ProgressBar {currentStep} {totalSteps} />
 				<SignupForm {handleSubmit} {handleFileChange} {currentStep} {formData} />
@@ -111,7 +111,7 @@
 	</div>
 
 	<div
-		class="w-1/2 bg-cover bg-center relative"
+		class="hidden lg:block lg:w-1/2 bg-cover bg-center relative"
 		style="background-image: url('/assets/images/woman-2.jpg');"
 	>
 		<div class="absolute inset-0 bg-black bg-opacity-20"></div>
